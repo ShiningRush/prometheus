@@ -516,6 +516,7 @@ func (d *Discovery) Run(ctx context.Context, ch chan<- []*targetgroup.Group) {
 		node := NewNode(
 			log.With(d.logger, "role", "node"),
 			cache.NewSharedInformer(nlw, &apiv1.Node{}, resyncPeriod),
+			d.preferNodeTypes,
 		)
 
 		d.discoverers = append(d.discoverers, node)
